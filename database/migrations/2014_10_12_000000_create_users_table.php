@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('str')->nullable();
             $table->rememberToken();
-            $table->tinyInteger('role')->default(2);
+            $table->tinyInteger('role')->nullable()->default(2);
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();

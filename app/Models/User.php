@@ -63,4 +63,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(File::class, 'user_id', 'id');
     }
+
+    public function currentFileChecked()
+    {
+        return $this->hasOne(FileChecked::class)->whereMonth('created_at', date('m'))
+            ->whereYear('created_at', date('Y'));
+    }
 }

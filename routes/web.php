@@ -3,6 +3,7 @@
 use App\Http\Controllers\FileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Files;
+use App\Http\Livewire\PdfUser;
 use App\Http\Livewire\Users;
 use App\Models\File;
 use App\Models\User;
@@ -19,7 +20,7 @@ use App\Models\User;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('fm');
 });
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
@@ -45,5 +46,5 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         });
     });
 
-    Route::get('/home', [FileController::class, 'Home'])->name('home');
+    Route::get('/home', PdfUser::class)->name('home');
 });

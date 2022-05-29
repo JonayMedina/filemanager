@@ -10,6 +10,9 @@
             @if ($modal)
                 @include('livewire.user.create')
             @endif
+            @if ($modal2)
+                @include('livewire.user.edit-user')
+            @endif
             <table class="table-fixed w-full text-sm text-left text-gray-500 dark:text-gray-40">
                 <thead>
                     <tr class="bg-indigo-600 text-white">
@@ -17,7 +20,7 @@
                         <th class="px-4 py-2">Name</th>
                         <th class="px-4 py-2"> Username </th>
                         <th class="px-4 py-2">Email</th>
-                        <th class="px-4 py-2">STR</th>
+                        <th class="px-4 py-2">Checked</th>
                         <th class="px-4 py-2">ACCIONES</th>
 
                     </tr>
@@ -32,7 +35,9 @@
                                 <td class="border px-4 py-2">{{ $user->name }}</td>
                                 <td class="border px-4 py-2">{{ $user->username }}</td>
                                 <td class="border px-4 py-2">{{ $user->email }}</td>
-                                <td class="border px-4 py-2 invisible hover:visible">{{ $user->str }}</td>
+                                <td class="border px-4 py-2">
+                                    {{ $user->currentFileChecked ? 'Aceptado el ' . $user->currentFileChecked->created_at->format('H:i:s d/m/Y') : 'NO Checked' }}
+                                </td>
                                 <td class="border px-4 py-2 text-center">
                                     <button wire:click="edit({{ $user->id }})"
                                         class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4">Editar</button>
@@ -41,12 +46,14 @@
                                 </td>
                             </tr>
                         @endforeach
+                        {{ $users->links() }}
                     @else
                         <h1 class="text-gray-900">Users empty</h1>
                     @endif
 
                 </tbody>
             </table>
+            {{ $users->links() }}
         </div>
     </div>
 </div>
